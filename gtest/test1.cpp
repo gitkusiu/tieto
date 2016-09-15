@@ -63,60 +63,8 @@ TEST(TagTest, AddAtribute)
 }
 
 
-TEST(TagTest, InsertOpeningTag)
-{
-    string name("tag1");
-    PairStr p("name", "VeryGoodName");
-    Tag t1(name);
-    t1.AddAtribute(p);
-    
-    EXPECT_EQ(name,   t1.GetName());
-    EXPECT_EQ(false,  t1.HasBeenClosed());
-    EXPECT_EQ(p,      t1.GetAtributes()[0]);
-    
-    string name2("tag2");
-    PairStr p2("value", "MyValue");
-    Tag t2(name2);
-    t2.AddAtribute(p2);
-    
-    t1.InsertOpeningTag(t2);
-    EXPECT_EQ(name,   t1.GetName());
-    EXPECT_EQ(false,  t1.HasBeenClosed());
-    EXPECT_EQ(p,      t1.GetAtributes()[0]);
-    
-    vector<Tag> subtags = t1.GetSubTags();
-    EXPECT_EQ(1,   subtags.size());
-    Tag tag2 = subtags[0];
-    EXPECT_EQ(name2,   tag2.GetName());
-    EXPECT_EQ(false,   tag2.HasBeenClosed());
-    EXPECT_EQ(p2,      tag2.GetAtributes()[0]);
-    
-    Tag t3("tag2");
-    t3.Close();
-    t1.InsertClosingTag(t3);
-    EXPECT_EQ(name,   t1.GetName());
-    EXPECT_EQ(false,  t1.HasBeenClosed());
-    EXPECT_EQ(p,      t1.GetAtributes()[0]);
 
-    subtags = t1.GetSubTags();
-    EXPECT_EQ(1,   subtags.size());
-    tag2 = subtags[0];
-    EXPECT_EQ(name2,   tag2.GetName());
-    EXPECT_EQ(true,   tag2.HasBeenClosed());
-    EXPECT_EQ(p2,      tag2.GetAtributes()[0]);
-    
-    
-    string s1 = t1.GetAtributeValue("tag1.tag2~value");
-    string s2 = t1.GetAtributeValue("tag1~name");
-    string s3 = t1.GetAtributeValue("tag1~value");
-    EXPECT_EQ("MyValue",     s1);
-    EXPECT_EQ("VeryGoodName",s2);
-    EXPECT_EQ("Not Found",   s3);
-}
-
-
-
-TEST(TagTest, InsertOpeningTag2)
+TEST(TagTest, InsertSubTag)
 {
     string  name1("tag1");
     string  atribute("name = Test");
