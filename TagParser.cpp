@@ -8,7 +8,7 @@ using std::cout;
 void TagParser::ParseNextLine(string line)
 {
     Bracket b(line);
-    if(b.IsOpening())   // if bracket contains opening tag
+    if(b.IsOpening())   // opening tag
     {
         if(tags.size()>0)
         {
@@ -18,35 +18,11 @@ void TagParser::ParseNextLine(string line)
         else
             tags.push_back( Tag(b) );
     }
-    else                //
+    else                // closing tag
     {
         assert(  tags.size()>0               );
         assert( !tags.back().HasBeenClosed() );
         tags.back().InsertSubTag(b);
     }
-}
-
-
-vector<PairStr> TagParser::ParsBracketAtributes(string atributes)
-{
-    vector<string> s = split(atributes, ' ');
-    
-    vector<PairStr> out;
-    vector<string>::iterator it;
-    if( s.size()%3==0 )
-    {
-        for(it = s.begin(); it != s.end(); it = it+3)
-        {
-            PairStr p(*(it),*(it+2));
-            if(*(it+1) == "=") { out.push_back(p); }
-            else           { std::cout << "ERROR : wrong operator";}
-        }
-    }
-    else
-    {
-        std::cout << "ERROR : Wrong number of atributes.";
-        exit(0);
-    }
-    return out;
 }
 

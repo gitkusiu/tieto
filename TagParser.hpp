@@ -17,11 +17,9 @@ class TagParser
 public:
                     TagParser() {}
     void            ParseNextLine(string line);     //parse next line and update tags acordingly
-    vector<PairStr> ParsBracketAtributes(string atributes);
     vector<Tag>     GetTags() {return tags;}
 
 private:
-//vector< Tag > open_tags;
 vector< Tag > tags;
 };
 
