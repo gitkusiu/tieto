@@ -8,36 +8,21 @@ using std::cout;
 void TagParser::ParseNextLine(string line)
 {
     Bracket b(line);
-    
     if(b.IsOpening())   // if bracket contains opening tag
     {
-        Tag t(b.GetName());
-        vector<PairStr> atrs = ParsBracketAtributes(b.GetBody());
-        t.AddAtributes(atrs);
-        if(tags.size() == 0              ||
-           tags.back().HasBeenClosed())
+        if(tags.size()>0)
         {
-            tags.push_back(t);
+            if( tags.back().HasBeenClosed() )    tags.push_back( Tag(b) ); 
+            else                                 tags.back().InsertSubTag(b);
         }
         else
-        {
-            tags.back().InsertOpeningTag(t);
-        }
+            tags.push_back( Tag(b) );
     }
     else                //
     {
-        Tag t(b.GetName());
-
-        if(tags.size()>0            &&
-           !tags.back().HasBeenClosed() )
-        {
-            tags.back().InsertClosingTag(t);
-        }
-        else
-        {
-            std::cout << "ERROR : TagParser::ParseNextLine().";
-            exit(0);
-        }
+        assert(  tags.size()>0               );
+        assert( !tags.back().HasBeenClosed() );
+        tags.back().InsertSubTag(b);
     }
 }
 

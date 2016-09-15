@@ -10,20 +10,14 @@ void Tag::InsertSubTag(Bracket b)
     {
         if( m_subtags.size()<=0 )
         {
-            Tag t(b);
-            m_subtags.push_back(t);
+            m_subtags.push_back( Tag(b) );
         }
         else
         {
-            if( m_subtags.back().HasBeenClosed() )
-            {
-                Tag t(b);
-                m_subtags.push_back(t);
-            }
-            else
-            {
-                m_subtags.back().InsertSubTag(b);
-            }
+            bool is_closed = m_subtags.back().HasBeenClosed();
+
+            if(is_closed)   m_subtags.push_back( Tag(b) );
+            else            m_subtags.back().InsertSubTag(b);
         }
     }
     else                //close existing tag
