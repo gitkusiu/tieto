@@ -26,11 +26,7 @@ public:
 
     string GetName() {return m_name;}
 
-    void InsertOpeningTag(Tag t);
-    bool InsertClosingTag(Tag t);
-
     void InsertSubTag(Bracket b);
-//    bool InsertClosingTag(Bracket b);
 
     void AddAtribute(PairStr a) { m_atributes.push_back(a);}
     void AddAtributes(vector< PairStr > a)
