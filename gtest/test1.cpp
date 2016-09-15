@@ -49,20 +49,6 @@ TEST(TagTest, Constructor)
     EXPECT_EQ(true,   t.HasBeenClosed());
 }
 
-TEST(TagTest, AddAtribute)
-{
-    string name("tag1");
-    PairStr p("name", "VeryGoodName");
-    Tag t(name);
-    t.AddAtribute(p);
-    
-    EXPECT_EQ(name,   t.GetName());
-    EXPECT_EQ(false,  t.HasBeenClosed());
-    EXPECT_EQ(p,  t.GetAtributes()[0]);
-    //TODO test also AddAtributes
-}
-
-
 
 TEST(TagTest, InsertSubTag)
 {

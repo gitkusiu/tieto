@@ -20,35 +20,23 @@ extern vector<string> split(string str, char c);
 class Tag
 {
 public:
-    //This constructor should be removed !!!
-    Tag(string p_name) : m_name(p_name), m_closed(false) {}
     Tag(Bracket b);
 
-    string GetName() {return m_name;}
-
     void InsertSubTag(Bracket b);
-
-    void AddAtribute(PairStr a) { m_atributes.push_back(a);}
-    void AddAtributes(vector< PairStr > a)
-    {
-        m_atributes.insert(m_atributes.end(),
-                           a.begin(),
-                           a.end());
-    }
-
-//    void PrintAllSubtags(string prefix);
 
     // method which analize given reference, compare with a strucutre of parsed 
     // atributes/subtags and return a value of a proper atribute.
     string GetAtributeValue(string ref);
-    
-    vector< Tag >     GetSubTags() { return m_subtags;}
-    vector< PairStr > GetAtributes() { return m_atributes;}
-    
-    
+
+
+
+    string GetName() {return m_name;}
     bool HasBeenClosed() {return m_closed;}
     void Close() { m_closed = true;}
 
+    vector< Tag >     GetSubTags() { return m_subtags;}
+    vector< PairStr > GetAtributes() { return m_atributes;}
+    
 private:
     string            m_name;         // name of tag 
     vector< PairStr > m_atributes;    // list of atributes
