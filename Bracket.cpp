@@ -10,14 +10,14 @@ vector<string> split(string str, char c)
     size_t previous = 0;
     for(size_t i = 0; i <= str.size()+1; i++)
     {
-        bool i_is_separator    =  str[i] == c;
+        bool i_is_a_separator  =  str[i] == c;
         bool i_is_at_the_end   =  str[i] == *(str.end());
-        bool is_not_empty_set  =  i-previous != 0;
+        bool set_is_not_empty  =  i-previous != 0;
         
-        if(is_not_empty_set)
+        if(set_is_not_empty)
         {
             int n = i-previous;
-            if(i_is_separator || i_is_at_the_end)
+            if(i_is_a_separator || i_is_at_the_end)
             {
                 if(i_is_at_the_end) {n++;}
                 out.push_back(str.substr(previous,n));
