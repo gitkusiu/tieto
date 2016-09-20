@@ -55,22 +55,27 @@ Tag::Tag(Bracket b) : m_name(b.GetName()),
 
 string Tag::GetAtributeValue(string ref)
 {
-    size_t i_dot = ref.find(".");        //find first dot
+    size_t i_dot = ref.find(".");        //search for a position of a first dot
 
-    if(i_dot == string::npos)            //last level of nesting; look for '~'
+    if(i_dot == string::npos)            //if dot has not been found; look for '~'
     {
         size_t i_tylda = ref.find("~");  //search for tylda
-        string var = ref.substr(i_tylda+1, ref.size()-i_tylda);
-        vector<PairStr>::iterator it;
-        for(it = m_atributes.begin();      //serch for a atribute with proper name
-            it != m_atributes.end(); 
-            it++)
+        string x = ref.substr(0,i_tylda);
+        if(x == m_name)               //check a if name of tag is OK
         {
-            if(it->first == var) break;
-        }
+            string var = ref.substr(i_tylda+1, ref.size()-i_tylda);
+            vector<PairStr>::iterator it;
+            for(it = m_atributes.begin();      //serch for a atribute with proper name
+                it != m_atributes.end();
+                it++)
+            {
+                if(it->first == var) break;
+            }
 
-        if( it != m_atributes.end() ) { return it->second; }
-        else                    { return "Not Found"; }
+            if( it != m_atributes.end() ) { return it->second; }
+            else                    { return "Not Found"; }
+        }
+        else { return string(""); }
     }
     else                                 //read a subtag
     {
