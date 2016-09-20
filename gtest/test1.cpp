@@ -23,7 +23,11 @@ TEST(BracketTest, OpeningBracket)
 TEST(BracketTest, ClosingBracket)
 {
     string name("tag1");
+
     string str = "</"+name+">";
+
+
+
     Bracket br(str);
   
     EXPECT_EQ(name,  br.GetName());
