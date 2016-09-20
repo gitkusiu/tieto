@@ -140,8 +140,14 @@ TEST(TagParserTest, ClosingParseNextLine)
 
 //--------------------------------------
     parser.ParseNextLine("</tag2>");
-    EXPECT_EQ(true,parser.GetTags()[0].GetSubTags()[0].HasBeenClosed());
+    EXPECT_EQ(false, parser.GetTags()[0].HasBeenClosed());
+    EXPECT_EQ(true,  parser.GetTags()[0].GetSubTags()[0].HasBeenClosed());
+    parser.ParseNextLine("</tag1>");
+    EXPECT_EQ(true,  parser.GetTags()[0].HasBeenClosed());
+    EXPECT_EQ(true,  parser.GetTags()[0].GetSubTags()[0].HasBeenClosed());
 }
+
+
 
 
 
