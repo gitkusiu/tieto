@@ -15,23 +15,28 @@ int main()
     
     std::string line;
     std::string text;
+    std::string value;
     std::cin >> N;
     std::cin >> Q;
     
-    std::cout << "N=" << N << " Q=" << Q << std::endl;
+    std::cout << "\nNumber of lines specifing tags is " << N  << "." << std::endl;
+    std::cout << "Number of ines specifing values is " << Q << "." << std::endl;
     std::getline(std::cin, line);
 
-//    Bracket::Bracket()
+    std::cout <<"\n----------- Reading and parsing tags -------------" << endl;
+//    tab_root.PrintAllSubtags("-");
     TagParser parser;
     for(int i=0;i<N;i++)
     {
         std::getline(std::cin, line); 
+        std::cout << line << endl;
         parser.ParseNextLine(line);
     }
     
-    vector<Tag> tttt = parser.GetTags();
+    vector<Tag> tags = parser.GetTags();
     
-    Tag tab_root = tttt[0];
+    
+
     
 //    std::cout <<"\n\n----------- Printing nested tags        -------------" << endl;
 //    tab_root.PrintAllSubtags("-");
@@ -43,5 +48,21 @@ int main()
 //        cout << line << " = ";
 //        cout << tab_root.GetAtributeValue(line) << endl;
 //    }
+
+    std::cout <<"\n----------- Requested values -------------" << endl;
+    for(int j=0;j<Q;j++)
+    {
+        std::getline(std::cin, line);
+        for(Tag t : tags)
+        {
+            value = t.GetAtributeValue(line);
+            if(value != "")
+            {
+//                cout << value << endl;
+                std::cout <<"requested: " << line << "\t = " << value << endl;
+                break;
+            }
+        }
+    }
 
 }
