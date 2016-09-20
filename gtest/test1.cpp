@@ -29,8 +29,12 @@ TEST(BracketTest, ClosingBracket)
 
 
     Bracket br(str);
+
+
   
     EXPECT_EQ(name,  br.GetName());
+
+
     EXPECT_EQ(false, br.IsOpening());
     EXPECT_EQ("", br.GetBody());
 }
