@@ -133,9 +133,14 @@ TEST(TagParserTest, ClosingParseNextLine)
     vector<Tag> subs = t.GetSubTags();
     l_atrs = subs[0].GetAtributes();
     EXPECT_EQ(1,                subs.size());
+    EXPECT_EQ(false,            subs[0].HasBeenClosed());
     EXPECT_EQ(1,                l_atrs.size());
     EXPECT_EQ("name",           l_atrs[0].first);
     EXPECT_EQ("\"Name1\"", l_atrs[0].second);
+
+//--------------------------------------
+    parser.ParseNextLine("</tag2>");
+    EXPECT_EQ(true,parser.GetTags()[0].GetSubTags()[0].HasBeenClosed());
 }
 
 
