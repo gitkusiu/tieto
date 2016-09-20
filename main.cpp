@@ -21,6 +21,7 @@ int main()
     std::cout << "N=" << N << " Q=" << Q << std::endl;
     std::getline(std::cin, line);
 
+//    Bracket::Bracket()
     TagParser parser;
     for(int i=0;i<N;i++)
     {

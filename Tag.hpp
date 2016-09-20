@@ -14,22 +14,20 @@ typedef pair<string,string> PairStr;
 
 extern vector<string> split(string str, char c);
 
-
-// Class representing tags.
-// 
+// Class representing tag with may have subtags.
 class Tag
 {
 public:
+    // Constructor which copy tagname from
+    // Bracket and set 'm_closed' variable to true
     Tag(Bracket b);
 
-    void InsertSubTag(Bracket b);
-
-    // method which analize given reference, compare with a strucutre of parsed 
+    // method which analize given reference,
+    // compare with a strucutre of parsed
     // atributes/subtags and return a value of a proper atribute.
     string GetAtributeValue(string ref);
 
-
-
+    void InsertSubTag(Bracket b);
     string GetName() {return m_name;}
     bool HasBeenClosed() {return m_closed;}
     void Close() { m_closed = true;}

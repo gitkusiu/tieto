@@ -20,7 +20,7 @@ public:
     vector<Tag>     GetTags() {return tags;}
 
 private:
-vector< Tag > tags;
+vector< Tag > tags; // vector of root tags (tags may have nested strucutre of subtags).
 };
 
 #endif

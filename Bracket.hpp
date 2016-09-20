@@ -9,8 +9,8 @@ using std::vector;
 
 class Bracket
 {
-public: 
-    
+public:
+
     // Bracket(string str) : m_name(str)
     // In constructor string is analized
     Bracket(string str);
