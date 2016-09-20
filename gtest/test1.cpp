@@ -22,7 +22,7 @@ TEST(BracketTest, OpeningBracket)
 
 TEST(BracketTest, ClosingBracket)
 {
-    string name("tag1");
+    string name(    "tag1"   );
 
     string str = "</"+name+">";
 
