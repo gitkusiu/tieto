@@ -17,6 +17,9 @@ TEST(BracketTest, OpeningBracket)
 }
 
 
+
+
+
 TEST(BracketTest, ClosingBracket)
 {
     string name("tag1");
@@ -27,6 +30,10 @@ TEST(BracketTest, ClosingBracket)
     EXPECT_EQ(false, br.IsOpening());
     EXPECT_EQ("", br.GetBody());
 }
+
+
+
+
 
 
 
