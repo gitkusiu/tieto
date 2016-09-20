@@ -110,31 +110,32 @@ TEST(TagParserTest, ClosingParseNextLine)
     vector<Tag> tags = parser.GetTags();
     EXPECT_EQ(1, tags.size());
 
-    Tag x = tags[0];
-    EXPECT_EQ(0, x.GetSubTags().size());
+    Tag t = tags[0];
+    EXPECT_EQ(0, t.GetSubTags().size());
 
-    vector<PairStr> l_atrs = x.GetAtributes();
+    vector<PairStr> l_atrs = t.GetAtributes();
     EXPECT_EQ(1,                l_atrs.size());
     EXPECT_EQ("value",          l_atrs[0].first);
     EXPECT_EQ("\"HelloWorld\"", l_atrs[0].second);
 
+//--------------------------------------
+    parser.ParseNextLine("<tag2 name = \"Name1\">");
 
+    tags = parser.GetTags();
+    EXPECT_EQ(1, tags.size());
 
-//    parser.ParseNextLine("<tag2 name = \"Name1\">");
+    t = tags[0];
+    l_atrs = t.GetAtributes();
+    EXPECT_EQ(1,                l_atrs.size());
+    EXPECT_EQ("value",          l_atrs[0].first);
+    EXPECT_EQ("\"HelloWorld\"", l_atrs[0].second);
 
-//    tags = parser.GetTags();
-//    EXPECT_EQ(1, tags.size());
-
-//    x = tags[0];
-//    EXPECT_EQ(1, x.GetSubTags().size());
-//    
-//    l_atrs = x.GetAtributes();
-//    EXPECT_EQ(1,                l_atrs.size());
-//    EXPECT_EQ("value",          l_atrs[0].first);
-//    EXPECT_EQ("\"HelloWorld\"", l_atrs[0].second);
-//    
-//    vector<Tag> subtags = x.GetSubTags();
-    
+    vector<Tag> subs = t.GetSubTags();
+    l_atrs = subs[0].GetAtributes();
+    EXPECT_EQ(1,                subs.size());
+    EXPECT_EQ(1,                l_atrs.size());
+    EXPECT_EQ("name",           l_atrs[0].first);
+    EXPECT_EQ("\"Name1\"", l_atrs[0].second);
 }
 
 
